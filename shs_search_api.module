@@ -16,9 +16,9 @@ function shs_search_api_views_data_alter(&$data) {
   foreach ($instances as $field_instances) {
     foreach ($field_instances as $field_name => $instance) {
       // Replace filter handler for this field.
-      if(module_exists('search_api')){
-        $indexers =  search_api_index_options_list();
-        foreach($indexers as $indexer => $index_human_name){
+      if (module_exists('search_api')) {
+        $indexers = search_api_index_options_list();
+        foreach ($indexers as $indexer => $index_human_name) {
           if (!empty($data["search_api_index_{$indexer}"][$field_name]['filter']['handler'])) {
             $data["search_api_index_{$indexer}"][$field_name]['filter']['handler'] = 'shs_handler_filter_term_node_tid_search_api';
           }
@@ -28,14 +28,15 @@ function shs_search_api_views_data_alter(&$data) {
     }
   }
 }
+
 /**
- * Return all descendant from a tid
+ * Return all descendant from a tid.
  */
 function shs_search_api_taxonomy_get_all_descendants($tid, &$children = array(), $vid = 0) {
   $children_this = taxonomy_get_children($tid);
-  if($children_this) {
+  if ($children_this) {
     $tids = array_keys($children_this);
-    foreach($tids as $tid) {
+    foreach ($tids as $tid) {
       $children[] = (string) $tid;
       shs_search_api_taxonomy_get_all_descendants($tid, $children, $vid);
     }

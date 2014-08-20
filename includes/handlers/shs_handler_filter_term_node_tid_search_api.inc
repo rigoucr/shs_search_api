@@ -208,8 +208,6 @@ class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_t
     return $wrapper;
   }
 
-
-
   /**
    * Add this filter to the query.
    */
@@ -236,12 +234,14 @@ class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_t
     $operator = '=';
     $conjunction = 'AND';
     switch ($this->operator) {
-    case 'or':
-      $conjunction = 'OR';
-      break;
-    case 'not':
-      $operator = 'NOT';
-      break;
+      case 'or':
+        $conjunction = 'OR';
+        break;
+
+      case 'not':
+        $operator = 'NOT';
+        break;
+
     }
 
     // If the value is an empty array, we either want no filter at all (for
