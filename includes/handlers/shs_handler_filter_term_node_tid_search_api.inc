@@ -10,12 +10,12 @@
  *
  * @ingroup views_filter_handlers
  */
-class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_term_node_tid {
+class ShsSearchApiHandlerFilterTermNodeTid extends views_handler_filter_term_node_tid {
 
   /**
-   * Definition of the options used.
+   * {@inheritdoc}
    */
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
 
     $options['type'] = array('default' => 'shs');
@@ -25,9 +25,9 @@ class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_t
   }
 
   /**
-   * Defines extra options form.
+   * {@inheritdoc}
    */
-  function extra_options_form(&$form, &$form_state) {
+  public function extra_options_form(&$form, &$form_state) {
     parent::extra_options_form($form, $form_state);
 
     $form['type']['#options'] += array(
@@ -51,9 +51,9 @@ class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_t
   }
 
   /**
-   * Options form subform for setting options.
+   * {@inheritdoc}
    */
-  function value_form(&$form, &$form_state) {
+  public function value_form(&$form, &$form_state) {
     parent::value_form($form, $form_state);
 
     $multiple = $this->options['expose']['multiple'];
@@ -171,9 +171,9 @@ class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_t
   }
 
   /**
-   * Display the filter on the administrative summary.
+   * {@inheritdoc}
    */
-  function admin_summary() {
+  public function admin_summary() {
     // Set up $this->value_options for the parent summary.
     $this->value_options = array();
 
@@ -185,43 +185,7 @@ class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_t
   }
 
   /**
-   * Retrieves a wrapper for this filter's field.
-   *
-   * @return EntityMetadataWrapper|null
-   *   A wrapper for the field which this filter uses.
-   */
-  function get_wrapper() {
-    if ($this->query) {
-      $index = $this->query->getIndex();
-    }
-    elseif (substr($this->view->base_table, 0, 17) == 'search_api_index_') {
-      $index = search_api_index_load(substr($this->view->base_table, 17));
-    }
-    else {
-      return NULL;
-    }
-    $wrapper = $index->entityWrapper(NULL, TRUE);
-    $parts = explode(':', $this->real_field);
-    foreach ($parts as $i => $part) {
-      if (!isset($wrapper->$part)) {
-        return NULL;
-      }
-      $wrapper = $wrapper->$part;
-      $info = $wrapper->info();
-      if ($i < count($parts) - 1) {
-        // Unwrap lists.
-        $level = search_api_list_nesting_level($info['type']);
-        for ($j = 0; $j < $level; ++$j) {
-          $wrapper = $wrapper[0];
-        }
-      }
-    }
-
-    return $wrapper;
-  }
-
-  /**
-   * Add this filter to the query.
+   * {@inheritdoc}
    */
   public function query() {
     $children = array();
