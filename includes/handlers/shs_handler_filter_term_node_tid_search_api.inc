@@ -10,8 +10,11 @@
  *
  * @ingroup views_filter_handlers
  */
-class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_term_node_tid {
+class shs_search_api_handler_filter_term_node_tid extends views_handler_filter_term_node_tid {
 
+  /**
+   * Definition of the options used.
+   */
   function option_definition() {
     $options = parent::option_definition();
 
@@ -21,6 +24,9 @@ class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_t
     return $options;
   }
 
+  /**
+   * Defines extra options form.
+   */
   function extra_options_form(&$form, &$form_state) {
     parent::extra_options_form($form, $form_state);
 
@@ -44,6 +50,9 @@ class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_t
     }
   }
 
+  /**
+   * Options form subform for setting options.
+   */
   function value_form(&$form, &$form_state) {
     parent::value_form($form, $form_state);
 
@@ -161,6 +170,9 @@ class shs_handler_filter_term_node_tid_search_api extends views_handler_filter_t
     }
   }
 
+  /**
+   * Display the filter on the administrative summary.
+   */
   function admin_summary() {
     // Set up $this->value_options for the parent summary.
     $this->value_options = array();
