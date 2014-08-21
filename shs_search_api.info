@@ -4,4 +4,3 @@ description = Enables to use the simple hierarchical select widget in search API
 dependencies[] = shs
 dependencies[] = search_api
 files[] = includes/handlers/shs_handler_filter_term_node_tid_search_api.inc
-
