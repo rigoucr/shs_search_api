@@ -1,7 +1,7 @@
 <?php
 /**
- * @file shs_search_api.module
  * Shs + search api  Integration.
+ * @file shs_search_api.module
  * @author: Rodrigo Espinoza Brenes <espinoza.brenes.rodrigo@gmail.com>
  * @author: Kevin Porras <kporras07@gmail.com>
  * @version: 1.x
