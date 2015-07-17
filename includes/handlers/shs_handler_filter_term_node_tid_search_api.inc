@@ -134,10 +134,6 @@ class ShsSearchApiHandlerFilterTermNodeTid extends views_handler_filter_term_nod
           ),
         ),
       );
-      // Add settings.
-      drupal_add_js($settings_js, 'setting');
-      // Add behavior.
-      drupal_add_js(drupal_get_path('module', 'shs') . '/js/shs.js');
 
       if (is_array($default_value) && $multiple && $default_value[0] != 'All') {
         foreach ($default_value as $delta => $level) {
@@ -156,6 +152,18 @@ class ShsSearchApiHandlerFilterTermNodeTid extends views_handler_filter_term_nod
         '#default_value' => empty($default_value_str) ? 'All' : $default_value_str,
         '#attributes' => array(
           'class' => array('element-invisible', 'shs-enabled'),
+        ),
+        '#attached' => array(
+          'js' => array(
+            0 => array(
+              'data' => $settings_js,
+              'type' => 'setting',
+            ),
+            1 => array(
+              'data' => drupal_get_path('module', 'shs') . '/js/shs.js',
+              'type' => 'file',
+            ),
+          ),
         ),
       );
 
