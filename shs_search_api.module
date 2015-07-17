@@ -5,6 +5,16 @@
  */
 
 /**
+ * Implements hook_help().
+ */
+function shs_search_api_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#shs_search_api':
+      return '<p>' . t('This module allows to use the Simple hierarchical select widget in search api views.') . '</p>';
+  }
+}
+
+/**
  * Implements hook_views_data_alter().
  */
 function shs_search_api_views_data_alter(&$data) {
