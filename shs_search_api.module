@@ -34,7 +34,7 @@ function shs_search_api_views_data_alter(&$data) {
 }
 
 /**
- * Return all descendant from a tid.
+ * Populate $children with all descendants of the given tid.
  */
 function shs_search_api_taxonomy_get_all_descendants($tid, &$children = array(), $vid = 0) {
   $children_this = taxonomy_get_children($tid);
