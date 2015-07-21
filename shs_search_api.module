@@ -41,12 +41,12 @@ function shs_search_api_taxonomy_get_all_descendants($tid, &$children = array(),
   if ($children_this) {
     $tids = array_keys($children_this);
     foreach ($tids as $tid) {
-      $children[] = (string) $tid;
+      $children[] = $tid;
       shs_search_api_taxonomy_get_all_descendants($tid, $children, $vid);
     }
   }
   else {
-    $children[] = (string) $tid;
+    $children[] = $tid;
     $children = array_unique($children);
   }
 }
