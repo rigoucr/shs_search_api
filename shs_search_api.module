@@ -23,15 +23,12 @@ function shs_search_api_views_data_alter(&$data) {
   foreach ($instances as $field_instances) {
     foreach ($field_instances as $field_name => $instance) {
       // Replace filter handler for this field.
-      if (module_exists('search_api')) {
-        $indexers = search_api_index_options_list();
-        foreach ($indexers as $indexer => $index_human_name) {
-          if (!empty($data["search_api_index_{$indexer}"][$field_name]['filter']['handler'])) {
-            $data["search_api_index_{$indexer}"][$field_name]['filter']['handler'] = 'ShsSearchApiHandlerFilterTermNodeTid';
-          }
+      $indexers = search_api_index_options_list();
+      foreach ($indexers as $indexer => $index_human_name) {
+        if (!empty($data["search_api_index_{$indexer}"][$field_name]['filter']['handler'])) {
+          $data["search_api_index_{$indexer}"][$field_name]['filter']['handler'] = 'ShsSearchApiHandlerFilterTermNodeTid';
         }
       }
-
     }
   }
 }
