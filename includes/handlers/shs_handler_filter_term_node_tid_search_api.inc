@@ -155,11 +155,11 @@ class ShsSearchApiHandlerFilterTermNodeTid extends views_handler_filter_term_nod
         ),
         '#attached' => array(
           'js' => array(
-            0 => array(
+            array(
               'data' => $settings_js,
               'type' => 'setting',
             ),
-            1 => array(
+            array(
               'data' => drupal_get_path('module', 'shs') . '/js/shs.js',
               'type' => 'file',
             ),
