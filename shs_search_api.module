@@ -25,8 +25,8 @@ function shs_search_api_views_data_alter(&$data) {
       // Replace filter handler for this field.
       $indexers = search_api_index_options_list();
       foreach ($indexers as $indexer => $index_human_name) {
-        if (!empty($data["search_api_index_{$indexer}"][$field_name]['filter']['handler'])) {
-          $data["search_api_index_{$indexer}"][$field_name]['filter']['handler'] = 'ShsSearchApiHandlerFilterTermNodeTid';
+        if (!empty($data["search_api_index_{$indexer}"][$field_name . '_tid']['filter']['handler'])) {
+          $data["search_api_index_{$indexer}"][$field_name . '_tid']['filter']['handler'] = 'ShsSearchApiHandlerFilterTermNodeTid';
         }
       }
     }
